@@ -1,0 +1,56 @@
+
+import requests
+import json
+
+# function to get a random meme from the API
+def get_meme(category):
+    url = f"https://api.memegen.link/images/{category}/_/{category}.jpg"
+    response = requests.get(url)
+    return response.content
+
+# function to analyze the sentiment of the user input
+def analyze_sentiment(text):
+    url = "https://api.meaningcloud.com/sentiment-2.1"
+    payload = {'key': 'YOUR_API_KEY', 'txt': text, 'lang': 'en'}
+    response = requests.post(url, data=payload)
+    sentiment = json.loads(response.content)['score_tag']
+    return sentiment
+
+# function to get user input and generate memes
+def chatbot():
+    print("Hi, I'm a chatbot. How can I help you today?")
+
+    while True:
+        user_input = input().lower()
+        if "bye" in user_input:
+            print("Goodbye!")
+            break
+
+        # Check if user input is a category or sentiment
+        if "category" in user_input:
+            category = input("What category would you like to see memes in?").lower()
+            meme = get_meme(category)
+            with open("meme.jpg", "wb") as f:
+                f.write(meme)
+            print("Here's your meme:")
+            # Display the meme
+            # Replace print with your display function
+            print("Displaying meme...")
+        else:
+            sentiment = analyze_sentiment(user_input)
+            if sentiment in ["P+", "P", "NEU"]:
+                # Generate a positive meme
+                meme = get_meme("wholesome")
+            else:
+                # Generate a negative meme
+                meme = get_meme("sarcastic")
+
+            with open("meme.jpg", "wb") as f:
+                f.write(meme)
+            print("Here's your meme:")
+            # Display the meme
+            # Replace print with your display function
+            print("Displaying meme...")
+
+if __name__ == "__main__":
+    chatbot()
