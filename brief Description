@@ -1,0 +1,18 @@
+
+The chatbot is a Python program that uses natural language processing (NLP) and image manipulation libraries to generate memes based on a user's mood or category of choosing. Here is a brief description of how it works:
+
+The program first imports the necessary libraries for handling user input, sentiment analysis, and image manipulation.
+
+When the program starts, it prompts the user with a greeting and waits for input.
+
+The program uses a while loop to continually listen for user input until the user says "bye".
+
+If the user input contains the word "category", the program prompts the user to enter a category for the meme, such as "dog" or "cat". It then uses an API to fetch a random meme image that matches the category and displays the image to the user.
+
+If the user input does not contain the word "category", the program analyzes the sentiment of the user input using an API, which returns either a positive or negative sentiment score. If the sentiment score is positive, the program fetches a wholesome meme image using an API, and if the sentiment score is negative, the program fetches a sarcastic meme image using the same API.
+
+Once the program has fetched the appropriate meme image, it displays the image to the user using a display function.
+
+The program continues to listen for user input until the user says "bye", at which point the program bids the user farewell and exits.
+
+Overall, the chatbot uses APIs for sentiment analysis and meme generation, and prompts the user for input to generate a personalized meme based on their mood or interests.
